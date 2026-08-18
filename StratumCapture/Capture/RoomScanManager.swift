@@ -14,6 +14,15 @@ final class RoomScanManager: ObservableObject, RoomCaptureSessionDelegate, RoomC
     /// SwiftUI's "Done" button has something to call `stop()` on.
     weak var activeSession: RoomCaptureSession?
 
+    init() {}
+
+    // MARK: NSCoding
+    // `RoomCaptureViewDelegate` inherits from `NSCoding` — this instance is
+    // never archived, so these are just formal stubs to satisfy the type
+    // system, not functionality this class actually uses.
+    init?(coder: NSCoder) {}
+    func encode(with coder: NSCoder) {}
+
     func finishScanning() {
         isFinishing = true
         activeSession?.stop()
