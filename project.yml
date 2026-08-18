@@ -1,0 +1,32 @@
+name: StratumCapture
+options:
+  bundleIdPrefix: com.stratum
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  StratumCapture:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: StratumCapture
+    info:
+      path: Generated/Info.plist
+      properties:
+        UILaunchScreen: {}
+        NSCameraUsageDescription: "Stratum Capture uses the camera to scan room geometry with RoomPlan and to photograph open stud bays for AI analysis."
+        UIRequiredDeviceCapabilities: [arkit]
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.stratum.capture
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        CODE_SIGN_STYLE: Automatic
+    dependencies:
+      - sdk: RoomPlan.framework
