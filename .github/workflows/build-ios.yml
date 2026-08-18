@@ -15,12 +15,17 @@ on:
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
 
-      - name: Show Xcode version
-        run: xcodebuild -version
+      - name: Select newest available Xcode
+        run: |
+          latest=$(ls -d /Applications/Xcode_*.app 2>/dev/null | sort -V | tail -n1)
+          if [ -n "$latest" ]; then
+            sudo xcode-select -s "$latest/Contents/Developer"
+          fi
+          xcodebuild -version
 
       - name: Install XcodeGen
         run: brew install xcodegen
